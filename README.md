@@ -153,4 +153,5 @@ Feedstock Maintainers
 
 * [@LukasScholz](https://github.com/LukasScholz/)
 * [@mfleisch](https://github.com/mfleisch/)
+* [@joXemMx](https://github.com/joXemMx)
 

@@ -21,13 +21,14 @@ jobSub.ms_novelist_params.enabled = False
 
 job = api.jobs().start_job(project_id=ps_info.project_id, job_submission=jobSub)
 while True:
-    if api.jobs().get_job(job.id).progress.state != 'DONE':
+    if api.jobs().get_job(ps_info.project_id, job.id).progress.state != 'DONE':
         time.sleep(10)
     else:
         break
 
-tree = api.features().get_aligned_feature(ps_info.project_id, featureId, [AlignedFeatureOptField.TOPANNOTATIONS]
-                                          ).top_annotations.formula_annotation.fragmentation_tree
+formula_id = api.features().get_aligned_feature(ps_info.project_id, featureId, [AlignedFeatureOptField.TOPANNOTATIONS]
+                                                ).top_annotations.formula_annotation.formula_id
+tree = api.features().get_frag_tree(ps_info.project_id, featureId, formula_id)
 print(tree.to_json())
 SiriusSDK().shutdown_sirius()
 

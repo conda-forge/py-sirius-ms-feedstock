@@ -9,9 +9,9 @@ Package license: Apache-2.0
 
 Summary: PySirius: Python library for SIRIUS MS/MS analyses software.
 
-Development: https://github.com/boecker-lab/sirius-client-openAPI/tree/master/client-api_python
+Development: https://github.com/sirius-ms/sirius-client-openAPI/tree/master/client-api_python
 
-Documentation: https://boecker-lab.github.io/docs.sirius.github.io/
+Documentation: https://v6.docs.sirius-ms.io/
 
 Python client for the SIRIUS (local) REST API (OpenAPI) that provides the full functionality of the SIRIUS
 MS/MS analyses software including its web based features as background service.
@@ -151,7 +151,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@LukasScholz](https://github.com/LukasScholz/)
+* [@joXemMx](https://github.com/joXemMx/)
 * [@mfleisch](https://github.com/mfleisch/)
-* [@joXemMx](https://github.com/joXemMx)
 

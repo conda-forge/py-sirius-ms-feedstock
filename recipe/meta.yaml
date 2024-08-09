@@ -1,14 +1,15 @@
-{% set version = "0.9" %}
+#{% set siriusVersion = "6.0.2" %}
+#{% set apiVersion = "2.1" %}
+{% set version = "2.1+sirius6.0.3" %}
 {% set name = "py-sirius-ms" %}
-{% set commit = "5064de70794ce0b28ace80f33e536c7a374c56f6" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/boecker-lab/sirius-client-openAPI/archive/{{ commit }}.zip
-  sha256: 84f19f6a48ea510c040642c5e81e2a1b3e3a0a1fe0823900241ea797306a04b0
+  url: https://github.com/boecker-lab/sirius-client-openAPI/archive/refs/tags/{{ version }}.zip
+  sha256: d3c5745234bbe862ad6b9f81ac6ba419936052967ee28f8bb7e37c963a1153c5
 
 build:
   noarch: python
@@ -26,8 +27,10 @@ requirements:
     - six >=1.10
     - python-dateutil >=2.5.3
     - setuptools >=21.0.0
-    - urllib3 >=1.15.1
-    - sirius-ms >=5.7.0
+    - urllib3 >=1.25.3, <2.1.0
+    - typing-extensions >=4.7.1
+    - pydantic >=2
+    - sirius-ms >=6.0.3 <7.0.0
 
 test:
   imports:
@@ -48,12 +51,10 @@ about:
     MS/MS analyses software including its web based features as background service.
   license: Apache-2.0
   license_file: client-api_python/LICENSE.txt
-  doc_url: https://boecker-lab.github.io/docs.sirius.github.io/
-  dev_url: https://github.com/boecker-lab/sirius-client-openAPI/tree/master/client-api_python
+  doc_url: https://v6.docs.sirius-ms.io/
+  dev_url: https://github.com/sirius-ms/sirius-client-openAPI/tree/master/client-api_python
 
 extra:
   recipe-maintainers:
     - joXemMx
     - mfleisch
-    - joXemMx
-    - LukasScholz

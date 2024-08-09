@@ -21,8 +21,8 @@ ECHO "### [EXE] RUN ILP SOLVER TEST"
 if errorlevel 1 exit 1
 
 ECHO "### [EXE] CHECK ILP SOLVER TEST"
-If not exist "%cd%\test_fragtree.txt" (
-    echo Fragmentation tree test [EXE] failed!
+If not exist "%cd%\test_fragtree.json" (
+    echo Get Version from API test failed!
     exit 1
 )
 

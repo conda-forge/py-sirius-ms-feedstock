@@ -30,7 +30,7 @@ requirements:
     - urllib3 >=1.25.3, <2.1.0
     - typing-extensions >=4.7.1
     - pydantic >=2
-    - sirius-ms >=6.0.3, <7.0.0
+    - sirius-ms >=6.0.3
 
 test:
   imports:

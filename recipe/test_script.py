@@ -13,6 +13,7 @@ api.projects().import_preprocessed_data(ps_info.project_id, ignore_formulas=True
 featureId = api.features().get_aligned_features(ps_info.project_id)[0].aligned_feature_id
 
 jobSub = api.jobs().get_default_job_config()
+jobSub.spectra_search_params.enabled = False
 jobSub.formula_id_params.enabled = True
 jobSub.fingerprint_prediction_params.enabled = False
 jobSub.structure_db_search_params.enabled = False

@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/boecker-lab/sirius-client-openAPI/archive/refs/tags/{{ version }}.zip
-  sha256: d3c5745234bbe862ad6b9f81ac6ba419936052967ee28f8bb7e37c963a1153c5
+  sha256: 291a5ffa7f8e631e6cdd101cedf81df8b920104c86d6d4afa90fd3ac798180d7
 
 build:
   noarch: python

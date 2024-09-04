@@ -1,6 +1,6 @@
 #{% set siriusVersion = "6.0.2" %}
 #{% set apiVersion = "2.1" %}
-{% set version = "2.1+sirius6.0.4" %}
+{% set version = "2.1+sirius6.0.5" %}
 {% set name = "py-sirius-ms" %}
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/boecker-lab/sirius-client-openAPI/archive/refs/tags/{{ version }}.zip
-  sha256: 03778135174520b37fd406d4600e749a3a2c0f41bd1c104772dda9bc96014d90
+  sha256: f6498e115bfe620919565b3becd2d6d81592a61ce7bb7faf2d3628005a253914
 
 build:
   noarch: python
@@ -30,7 +30,7 @@ requirements:
     - urllib3 >=1.25.3, <2.1.0
     - typing-extensions >=4.7.1
     - pydantic >=2
-    - sirius-ms >=6.0.4
+    - sirius-ms >=6.0.5
 
 test:
   imports:

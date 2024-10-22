@@ -26,7 +26,7 @@ requirements:
     - certifi >=14.05.14
     - six >=1.10
     - python-dateutil >=2.5.3
-#    - setuptools >=21.0.0
+    - setuptools
     - urllib3 >=1.25.3, <2.1.0
     - typing-extensions >=4.7.1
     - pydantic >=2

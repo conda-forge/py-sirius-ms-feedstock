@@ -17,6 +17,11 @@ build:
   number: 0
 
 requirements:
+  build:
+    - python >=3.8
+    - pip
+    - setuptools >=21.0.0
+
   host:
     - python >=3.8
     - pip
@@ -26,7 +31,7 @@ requirements:
     - certifi >=14.05.14
     - six >=1.10
     - python-dateutil >=2.5.3
-    - setuptools
+    - setuptools >=21.0.0
     - urllib3 >=1.25.3, <2.1.0
     - typing-extensions >=4.7.1
     - pydantic >=2

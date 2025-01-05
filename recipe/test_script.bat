@@ -20,11 +20,5 @@ ECHO "### [EXE] RUN ILP SOLVER TEST"
 %PYTHON% "%RECIPE_DIR%\test_script.py"
 if errorlevel 1 exit 1
 
-ECHO "### [EXE] CHECK ILP SOLVER TEST"
-If not exist "%cd%\test_fragtree.json" (
-    echo Get Version from API test failed!
-    exit 1
-)
-
 echo Success!
 exit 0

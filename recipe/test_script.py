@@ -1,38 +1,54 @@
-from PySirius import SiriusSDK, AlignedFeatureOptField, ActuatorApi
 import os
 import time
+import sys
 
+from PySirius import SiriusSDK, AlignedFeatureOptField, FragmentationTree, FormulaCandidate
+
+
+path_to_project = "./testProject.sirius"
+# start acceptance test for packages
 api = SiriusSDK().attach_or_start_sirius(headless=True)
+ps_info = api.projects().create_project("testProject", os.path.abspath(path_to_project))
+try:
+    path = os.getenv('RECIPE_DIR') + "/Kaempferol.ms"
+    path = os.path.abspath(path)
+    api.projects().import_preprocessed_data(ps_info.project_id, ignore_formulas=True, input_files=[path])
 
-time.sleep(10)
-ps_info = api.projects().create_project_space("testProject", os.path.abspath("./testProject.sirius"))
-path = os.getenv('RECIPE_DIR') + "/Kaempferol.ms"
-path = os.path.abspath(path)
-api.projects().import_preprocessed_data(ps_info.project_id, ignore_formulas=True, input_files=[path])
+    feature_id = api.features().get_aligned_features(ps_info.project_id)[0].aligned_feature_id
 
-featureId = api.features().get_aligned_features(ps_info.project_id)[0].aligned_feature_id
+    job_sub = api.jobs().get_default_job_config()
+    job_sub.spectra_search_params.enabled = False
+    job_sub.formula_id_params.enabled = True
+    job_sub.fingerprint_prediction_params.enabled = False
+    job_sub.structure_db_search_params.enabled = False
+    job_sub.canopus_params.enabled = False
+    job_sub.ms_novelist_params.enabled = False
 
-jobSub = api.jobs().get_default_job_config()
-jobSub.spectra_search_params.enabled = False
-jobSub.formula_id_params.enabled = True
-jobSub.fingerprint_prediction_params.enabled = False
-jobSub.structure_db_search_params.enabled = False
-jobSub.canopus_params.enabled = False
-jobSub.ms_novelist_params.enabled = False
+    job = api.jobs().start_job(project_id=ps_info.project_id, job_submission=job_sub)
 
-job = api.jobs().start_job(project_id=ps_info.project_id, job_submission=jobSub)
-while True:
-    if api.jobs().get_job(ps_info.project_id, job.id).progress.state != 'DONE':
-        time.sleep(10)
-    else:
-        break
+    while True:
+        if api.jobs().get_job(ps_info.project_id, job.id).progress.state != 'DONE':
+            time.sleep(10)
+        else:
+            break
 
-formula_id = api.features().get_aligned_feature(ps_info.project_id, featureId, [AlignedFeatureOptField.TOPANNOTATIONS]
-                                                ).top_annotations.formula_annotation.formula_id
-tree = api.features().get_frag_tree(ps_info.project_id, featureId, formula_id)
-print(tree.to_json())
+    formula_candidate = api.features().get_aligned_feature(ps_info.project_id, feature_id, [AlignedFeatureOptField.TOPANNOTATIONS]).top_annotations.formula_annotation
+    tree = api.features().get_frag_tree(ps_info.project_id, feature_id, formula_candidate.formula_id)
 
-SiriusSDK().shutdown_sirius()
+    print(tree.to_json())
 
-with open('test_fragtree.json', 'w') as f:
-    f.write(tree.to_json())
+    if not isinstance(formula_candidate, FormulaCandidate):
+        print("formula candidate is null or has wrong type. Test FAILED")
+        sys.exit(1)
+
+    if not isinstance(tree, FragmentationTree):
+        print("tree is null or has wrong type. Test FAILED")
+        sys.exit(1)
+
+    if "C15H10O6" != formula_candidate.molecular_formula:
+        print(f"Expected formula result to be C15H10O6 but found {formula_candidate.molecular_formula}. Test FAILED")
+        sys.exit(1)
+
+finally:
+    api.projects().close_project(ps_info.project_id)
+    SiriusSDK().shutdown_sirius()

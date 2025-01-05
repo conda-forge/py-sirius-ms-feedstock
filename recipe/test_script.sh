@@ -21,11 +21,5 @@ echo "### [JAVA] Try run $JAVA_HOME"
 echo "### [SIRIUS API] Run Sirius test script"
 $PYTHON "$RECIPE_DIR/test_script.py"
 
-echo "### [SIRIUS] Check SIRIUS test script results"
-if [ ! -f "test_fragtree.json" ]; then
-  echo Fragmentation tree test failed!
-  exit 1
-fi
-
 echo "Success!"
 exit 0

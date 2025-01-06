@@ -37,16 +37,19 @@ try:
 
     print(tree.to_json())
 
+    print("### [SIRIUS API] Test if formula candidate is non null and has correct type.")
     if not isinstance(formula_candidate, FormulaCandidate):
-        print("formula candidate is null or has wrong type. Test FAILED")
+        print("Formula candidate is null or has wrong type. Test FAILED!")
         sys.exit(1)
 
+    print("### [SIRIUS API] Test if tree is non null and has correct type.")
     if not isinstance(tree, FragmentationTree):
-        print("tree is null or has wrong type. Test FAILED")
+        print("Tree is null or has wrong type. Test FAILED!")
         sys.exit(1)
 
+    print("### [SIRIUS API] Test if formula is correct.")
     if "C15H10O6" != formula_candidate.molecular_formula:
-        print(f"Expected formula result to be C15H10O6 but found {formula_candidate.molecular_formula}. Test FAILED")
+        print(f"Expected formula result to be C15H10O6 but found {formula_candidate.molecular_formula}. Test FAILED!")
         sys.exit(1)
 
 finally:

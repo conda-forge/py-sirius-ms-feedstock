@@ -12,15 +12,15 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install ./client-api_python/generated -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
     - setuptools >=21.0.0
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - certifi >=14.05.14
     - six >=1.10
     - python-dateutil >=2.5.3
@@ -35,6 +35,7 @@ test:
   requires:
     - pip
     - openjdk
+    - python {{ python_min }}
   commands:
     - pip check
     - sh $RECIPE_DIR/test_script.sh           # [not win]

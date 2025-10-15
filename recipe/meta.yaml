@@ -33,6 +33,7 @@ test:
   requires:
     - pip
     - openjdk
+    - python {{ python_min }}
   commands:
     - pip check
     - sh $RECIPE_DIR/test_script.sh           # [not win]

@@ -1,6 +1,5 @@
-{% set sirius_version = "6.3.3" %}
-{% set api_version = "3.1" %}
-{% set version = api_version ~ "+sirius" ~ sirius_version %}
+{% set version = "3.1+sirius6.3.3" %}
+{% set sirius_version = version.split("sirius")[1] %}
 {% set name = "py-sirius-ms" %}
 
 package:

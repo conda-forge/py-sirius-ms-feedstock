@@ -16,11 +16,11 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
     - setuptools >=21.0.0
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - certifi >=14.05.14
     - six >=1.10
     - python-dateutil >=2.5.3

@@ -1,4 +1,5 @@
-{% set version = "3.1+sirius6.1.1" %}
+{% set version = "3.1+sirius6.3.3" %}
+{% set sirius_version = version.split("sirius")[1] %}
 {% set name = "py-sirius-ms" %}
 
 package:
@@ -7,7 +8,7 @@ package:
 
 source:
   url: https://github.com/boecker-lab/sirius-client-openAPI/archive/refs/tags/{{ version }}.zip
-  sha256: 1eb3ed59bd9590a039c736ab51ab23c84e9d178a1035585448cc9ff3caffb494
+  sha256: 88de1c6d724d9e69dd834a46bfefad65b45795e23f7f6d3a4907624cc6c52a56
 
 build:
   noarch: python
@@ -16,25 +17,23 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
     - setuptools >=21.0.0
   run:
-    - python >=3.8
-    - certifi >=14.05.14
-    - six >=1.10
-    - python-dateutil >=2.5.3
-    - urllib3 >=1.25.3, <2.1.0
-    - typing-extensions >=4.7.1
+    - python >={{ python_min }}
+    - sirius-ms >={{ sirius_version }}
+    - urllib3 >=2.1.0,<3.0.0
+    - python-dateutil >=2.8.2
     - pydantic >=2
-    - sirius-ms >=6.1.1
-
+    - typing-extensions >=4.7.1
 test:
   imports:
     - PySirius
   requires:
     - pip
     - openjdk
+    - python {{ python_min }}
   commands:
     - pip check
     - sh $RECIPE_DIR/test_script.sh           # [not win]

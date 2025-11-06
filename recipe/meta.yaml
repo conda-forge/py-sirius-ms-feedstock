@@ -13,7 +13,7 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install ./client-api_python/generated -vv
-  number: 2
+  number: 3
 
 requirements:
   host:

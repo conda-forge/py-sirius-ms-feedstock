@@ -1,4 +1,4 @@
-{% set version = "3.1+sirius6.3.4" %}
+{% set version = "3.1+sirius6.3.12" %}
 {% set sirius_version = version.split("sirius")[1] %}
 {% set name = "py-sirius-ms" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/boecker-lab/sirius-client-openAPI/archive/refs/tags/{{ version }}.zip
-  sha256: 5d1b7da445955d1c626b6e0165760ae0c5df91b3aba7e6fcb5b88b3fe68a09d2
+  sha256: edf36992a43a927d33d903087827f01f6e25ad286df543fb7b10cbace41e21de
 
 build:
   noarch: python

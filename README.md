@@ -48,31 +48,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `py-sirius-ms` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install py-sirius-ms
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install py-sirius-ms
 ```
 
-It is possible to list all of the versions of `py-sirius-ms` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add py-sirius-ms
+# for installing globally
+pixi global install py-sirius-ms
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `py-sirius-ms` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search py-sirius-ms --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search py-sirius-ms --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search py-sirius-ms --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -84,6 +126,8 @@ mamba repoquery whoneeds py-sirius-ms --channel conda-forge
 # List dependencies of `py-sirius-ms`:
 mamba repoquery depends py-sirius-ms --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
